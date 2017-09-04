@@ -1,0 +1,12 @@
+<div> <%= @blog.title %> </div>
+<div> <%= @blog.category %> </div>
+<div> <%= @blog.content %> </div>
+<div> User ID: <%= @blog.user_id %> </div>
+
+<form action="/edit_blog/<%= @blog.id %>" method="post">
+	<p>Want to edit your blog post?</p>
+	<input type="text" name="title" placeholder="Title">
+	<input type="text" name="category"	placeholder="Category">
+	<input type="text" name="content" placeholder="Content">
+	<input type="submit" />
+</form>

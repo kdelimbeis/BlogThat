@@ -1,0 +1,60 @@
+<div class="style_user">
+	<h2>Current User:</h3>
+	<%= @user.username %>
+	<h3>City:</h4>
+	<%= @user.city %>
+	<h4>School:</h5>
+	<%= @user.school %>
+</div>
+
+<br>
+<br>
+
+<% if current_user.id == @user.id %>
+	<form action="/destroy_user" method="post">
+	<input type="submit" value="Delete your account">
+	</form>
+
+<hr>
+
+<form action="/edit_user" method="post">
+	<p>Want to edit your account?</p>
+	<input type="text" name="password" placeholder="Password">
+	<input type="text" name="city"	placeholder="city">
+	<input type="text" name="school" placeholder="school">
+	<input type="submit" />
+</form>
+
+<br>
+
+<form action="/blog" method="post">
+<p>What's on your mind??</p>
+		<input type="text" name="title"
+		placeholder = "Title" >
+
+		<input type="text" name="category"
+		placeholder="Category">
+
+		<textarea rows="4" cols="50" maxlength="150" name="content"
+		placeholder="Enter text here..."></textarea>
+		<input type="submit">
+</form>
+     
+<% end %>
+
+
+<br>
+<hr>
+
+	<% @blogs.each do |blog| %>
+<div class="box">
+	<div class="title"><%= blog.title %></div>
+	<div class="category"><%= blog.category %></div>
+	<div class="content"><%= blog.content %></div>
+	<% if current_user.id == @user.id %>
+		<a href="/blog/<%= blog.id %>" >Edit</a>
+	<% end %>
+	<div><p>User ID: <%= blog.user_id %> </p></div>
+	<div><p>Blog ID: <%= blog.id %> </p></div>
+</div>
+	<% end %>
